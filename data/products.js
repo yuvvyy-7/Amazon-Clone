@@ -656,5 +656,36 @@ const products = [
       "apparel",
       "mens"
     ]
+  },
+  {
+    id: "id1",
+    image: "images/products/backpack.jpg",
+    name: "Black Backpack",
+    rating: {
+      stars: 4,
+      count: 310
+    },
+    priceCents: 2550,
+    keywords: [
+      "accessories",
+      "travel",
+      "bag",
+      "mens"
+    ]
+  },
+  {
+    id: "id2",
+    image: "images/products/umbrella.jpg",
+    name: "Extra Large Gable Green Umbrella",
+    rating: {
+      stars: 4.5,
+      count: 3150
+    },
+    priceCents: 2000,
+    keywords: [
+      "outing",
+      "rainy",
+      "sunscreen"
+    ]
   }
 ];
