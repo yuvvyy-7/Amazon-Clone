@@ -1,6 +1,6 @@
 import { formatCurrency } from "./utility/money.js";
 import { products } from "../data/products.js";
-import { cart, removeFromCart, updateCartQuantity } from "../data/cart.js";
+import { cart, removeFromCart, updateCartQuantity, updateQuantity } from "../data/cart.js";
 
 
 updateCartQuantity();
@@ -40,9 +40,12 @@ cart.forEach((cartItem) => {
                   <span>
                     Quantity: <span class="quantity-label">${cartItem.quantity}</span>
                   </span>
-                  <span class="update-quantity-link link-primary">
+                  <span class="update-quantity-link link-primary js-itemUpdate-button" data-product-id="${matchingProduct.id}">
                     Update
                   </span>
+                  <input type="number" class="quantity-input"> 
+                  <span class="save-quantity-link link-primary" data-product-id="${matchingProduct.id}">Save</span>
+
                   <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${matchingProduct.id}">
                     Delete
                   </span>
@@ -113,3 +116,39 @@ cart.forEach((cartItem) => {
                 updateCartQuantity();
             });
         });
+
+
+    document.querySelectorAll('.js-itemUpdate-button')
+    .forEach((button) => {
+      button.addEventListener('click', () => {
+        const productId = button.dataset.productId;
+
+        const container = document.querySelector(`.js-cart-item-container-${productId}`);
+
+        container.classList.add('is-editing-quantity');
+      });
+
+    });
+
+    function updateQuantityLabel(container, updateValue) {
+      const quantityLabel = container.querySelector('.quantity-label');
+
+      quantityLabel.innerHTML = `${updateValue}`;
+    }
+
+    document.querySelectorAll('.save-quantity-link')
+    .forEach((button) => {
+      button.addEventListener('click', () => {
+        const productId = button.dataset.productId;
+      
+        const container = document.querySelector(`.js-cart-item-container-${productId}`);
+
+        const updateValue = Number(container.querySelector('.quantity-input').value); //searching the button into the respective container
+
+        updateQuantity(productId, updateValue);
+
+        container.classList.remove('is-editing-quantity');
+        updateCartQuantity();
+        updateQuantityLabel(container, updateValue);
+      });
+    });
