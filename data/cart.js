@@ -10,6 +10,29 @@ export let cart = JSON.parse(localStorage.getItem('cart')) || [];
 //   }];
 // }
 
+export function updateCartQuantity() {
+  let cartQuantity = 0;
+
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
+
+  const cartQuantityElement = document.querySelector('.js-cart-quantity');
+
+  if (cartQuantityElement) {
+    cartQuantityElement.innerHTML = cartQuantity;
+  }
+
+  const checkoutCountElement = document.querySelector('.js-checkout-count');
+
+  if (checkoutCountElement) {
+    checkoutCountElement.innerHTML = `
+      Checkout (<a class="return-to-home-link"
+      href="amazon.html">${cartQuantity} items</a>)
+    `;
+  }
+}
+
 function saveToStorage() {
     localStorage.setItem('cart',JSON.stringify(cart));
 }   
