@@ -1,8 +1,9 @@
 import { formatCurrency } from "../utility/money.js";
 import { products, getProduct } from "../../data/products.js";
 import { cart, removeFromCart, updateCartQuantity, updateQuantity, updateDeliveryOption } from "../../data/cart.js";
-import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
+import { renderPaymentSummary } from "./paymentSummary.js";
+import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 
 
 export function renderOrderSummary() {
@@ -94,7 +95,7 @@ cart.forEach((cartItem) => {
 
         html += `
             <div class="delivery-option  js-delivery-option" 
-                  data-product-id="${matchingProduct.id} 
+                  data-product-id="${matchingProduct.id}" 
                   data-delivery-option-id="${deliveryOption.id}">
 
               <input type="radio" ${isChecked ? 'checked' : ''} 
@@ -128,6 +129,8 @@ cart.forEach((cartItem) => {
 
                 container.remove();
                 updateCartQuantity();
+
+                renderPaymentSummary();
             });
         });
 
@@ -165,10 +168,11 @@ cart.forEach((cartItem) => {
         container.classList.remove('is-editing-quantity');
         updateCartQuantity();
         updateQuantityLabel(container, updateValue);
+        renderPaymentSummary();
       });
     });
 
-    document.querySelectorAll('js-delivery-option')
+    document.querySelectorAll('.js-delivery-option')
     .forEach((element) => {
       element.addEventListener('click', () => {
 
@@ -177,9 +181,12 @@ cart.forEach((cartItem) => {
       // using shorthand method
 
       const {productId, deliveryOptionId} = element.dataset;
+      console.log(productId, deliveryOptionId);
+
 
       updateDeliveryOption(productId, deliveryOptionId);
       renderOrderSummary();
+      renderPaymentSummary();
       });
     });
     
