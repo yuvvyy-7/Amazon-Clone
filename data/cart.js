@@ -37,17 +37,17 @@ function saveToStorage() {
     localStorage.setItem('cart',JSON.stringify(cart));
 }   
 
-let timeoutId;
-
+const timeoutIds = {};
 export function addToCart(productId) {
-    clearTimeout(timeoutId);
-    const addedToCart =  document.querySelector(`.js-added-to-cart-${productId}`);
+    const addedToCart = document.querySelector(`.js-added-to-cart-${productId}`);
 
     addedToCart.classList.add('add-success');
-      timeoutId =  setTimeout(() => {
+
+    clearTimeout(timeoutIds[productId]);
+
+    timeoutIds[productId] = setTimeout(() => {
         addedToCart.classList.remove('add-success');
     }, 2000);
-
     let matchingItem;
     
     cart.forEach((cartItem) => {
