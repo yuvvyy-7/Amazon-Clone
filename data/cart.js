@@ -10,7 +10,8 @@ export let cart = JSON.parse(localStorage.getItem('cart')) || [];
 //   }];
 // }
 
-export function updateCartQuantity() {
+export function updateCartQuantity() { /*updates cart quantity count in cart basked in amazon.html page and 
+    updates checkout header count in checkout.html*/ 
   let cartQuantity = 0;
 
   cart.forEach((cartItem) => {
