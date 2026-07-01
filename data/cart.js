@@ -1,5 +1,4 @@
-export let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
+export let cart; 
 // if (!cart) {
 //   cart = [{
 //     productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
@@ -9,6 +8,12 @@ export let cart = JSON.parse(localStorage.getItem('cart')) || [];
 //     quantity: 1
 //   }];
 // }
+
+export function loadFromStorage() {
+    cart = JSON.parse(localStorage.getItem('cart')) || [];
+}
+
+loadFromStorage();
 
 export function updateCartQuantity() { /*updates cart quantity count in cart basked in amazon.html page and 
     updates checkout header count in checkout.html*/ 
