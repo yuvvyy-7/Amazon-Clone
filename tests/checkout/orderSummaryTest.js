@@ -81,4 +81,3 @@ describe('test suite: renderOrderSummary', () => {
       document.querySelector('.js-test-container').innerHTML = '';
     });
 });
-
