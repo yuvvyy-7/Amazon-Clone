@@ -174,8 +174,6 @@ cart.forEach((cartItem) => {
       // using shorthand method
 
       const {productId, deliveryOptionId} = element.dataset;
-      console.log(productId, deliveryOptionId);
-
 
       updateDeliveryOption(productId, deliveryOptionId);
       renderOrderSummary();
@@ -183,5 +181,4 @@ cart.forEach((cartItem) => {
       });
     });
     
-  
   }
