@@ -46,7 +46,7 @@ class Clothing extends Product {
   sizeChartLink;
 
   constructor(productDetails) {
-    super(productDetails);
+    super(productDetails); //imports constructor details from parent class
     this.sizeChartLink = productDetails.sizeChartLink;
   }
 
@@ -59,18 +59,31 @@ class Clothing extends Product {
   }
 }
 
+class Appliances extends Product {
+  instructionsLink;
+  warrantyLink;
 
-// export function getProduct(productId) {
-//   let matchingProduct;
-
-//   products.forEach((product) => {
-//     if (product.id === productId) {
-//       matchingProduct = product;
-//     }
-//   });
-//     return matchingProduct;
-// }
-
+  constructor(productDetails) {
+    super(productDetails);
+    this.instructionsLink = productDetails.instructionsLink;
+    this.warrantyLink = productDetails.warrantyLink;
+  }
+  
+  extraInfoHTML() {
+    return `
+      <div>
+        <a href="${this.instructionsLink}" target="_blank">
+          Instructions
+        </a>
+    </div>
+    <div>
+        <a href="${this.warrantyLink}" target="_blank">
+          Warranty
+        </a>
+    </div>
+    `;
+  }
+}
 
 export const products = [
   {
@@ -127,6 +140,11 @@ export const products = [
       stars: 5,
       count: 2197
     },
+
+    type: "appliances",
+    instructionsLink: "images/appliance-instructions.png",
+    warrantyLink: "images/appliance-warranty.png",
+
     priceCents: 1899,
     keywords: [
       "toaster",
@@ -312,6 +330,11 @@ export const products = [
       stars: 5,
       count: 846
     },
+
+    type: "appliances",
+    instructionsLink: "images/appliance-instructions.png",
+    warrantyLink: "images/appliance-warranty.png",
+
     priceCents: 3074,
     keywords: [
       "water boiler",
@@ -617,6 +640,11 @@ export const products = [
       stars: 4.5,
       count: 1211
     },
+
+    type: "appliances",
+    instructionsLink: "images/appliance-instructions.png",
+    warrantyLink: "images/appliance-warranty.png",
+
     priceCents: 2250,
     keywords: [
       "coffeemakers",
@@ -677,6 +705,11 @@ export const products = [
       stars: 4,
       count: 3
     },
+
+    type: "appliances",
+    instructionsLink: "images/appliance-instructions.png",
+    warrantyLink: "images/appliance-warranty.png",
+
     priceCents: 10747,
     keywords: [
       "food blenders",
@@ -765,7 +798,9 @@ export const products = [
 ].map((productDetails) => {
   if(productDetails.type === 'clothing') {
     return new Clothing(productDetails);
+  } else if (productDetails.type === 'appliances') {
+    return new Appliances(productDetails);
   }
 
   return new Product(productDetails);
-});
+}); 
