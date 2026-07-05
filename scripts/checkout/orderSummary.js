@@ -72,6 +72,9 @@ cart.forEach((cartItem) => {
             </div>
           </div>
     `;
+   
+
+
     });
 
     function deliveryOptionsHTML(matchingProduct, cartItem) {

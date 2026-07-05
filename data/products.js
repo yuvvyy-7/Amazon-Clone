@@ -109,7 +109,9 @@ export function loadProductsFetch() {
       return new Product(productDetails);
     }); 
     console.log('product loaded');
-  })
+  });
+
+  return promise; 
 }
 
 export function loadProducts(fun) {
