@@ -43,6 +43,12 @@ export function updateCartQuantity() { /*updates cart quantity count in cart bas
       href="amazon.html">${cartQuantity} items</a>)
     `;
   }
+
+  const orderCartQuantity = document.querySelector('.js-orders-cart-quantity');
+
+  if(orderCartQuantity) {
+    orderCartQuantity.innerHTML = cartQuantity;
+  }
 }
 
 function saveToStorage() {
@@ -129,7 +135,6 @@ export function loadCart(fun) {
   const xhr = new XMLHttpRequest();
 
   xhr.addEventListener('load', () => {
-    console.log(xhr.response);
     fun();
   });
 
