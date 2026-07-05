@@ -1,6 +1,12 @@
 import { cart, addToCart, updateCartQuantity } from '../data/cart.js';
-import { products } from '../data/products.js';
+import {products, loadProducts} from '../data/products.js';
 import { formatCurrency } from './utility/money.js';
+
+
+loadProducts(renderProductsGrid);
+
+function renderProductsGrid() {
+
 
 updateCartQuantity();
 
@@ -91,3 +97,5 @@ document.querySelectorAll('.js-add-to-cart-button')
   updateCartQuantity();
     });
 });
+
+}
