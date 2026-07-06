@@ -153,17 +153,6 @@ Track Package (tracking.html)
 - **ES6 Modules**: JavaScript organized as ES6 modules
 - **Clean Architecture**: Separation of concerns across HTML, CSS, and JS
 
-### Future Enhancements
-- [ ] Backend API integration
-- [ ] User authentication & profiles
-- [ ] Payment gateway integration
-- [ ] Real product database
-- [ ] Advanced search & filtering
-- [ ] Product recommendations
-- [ ] Customer reviews & ratings
-- [ ] Wishlist functionality
-- [ ] Dark mode support
-
 ## 📝 Learning Outcomes
 
 This project is excellent for learning:
@@ -174,23 +163,11 @@ This project is excellent for learning:
 - CSS best practices
 - E-commerce UX/UI patterns
 
-## 📄 License
-
-This project is open source and available under the MIT License.
-
 ## 👤 Author
 
-**yuvvyy-7**
+**yuvraj**
 - GitHub: [@yuvvyy-7](https://github.com/yuvvyy-7)
 
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to:
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 ## ⭐ Show Your Support
 
@@ -198,4 +175,3 @@ If you found this project helpful or interesting, please consider giving it a st
 
 ---
 
-**Happy Coding! 🎉**
