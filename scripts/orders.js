@@ -89,6 +89,10 @@ function productsListHTML(order) {
 
 }
 
+orders.forEach((order) => {
+  console.log(order);
+})
+
 document.querySelector('.js-orders-grid')
 .innerHTML = ordersHTML;
 

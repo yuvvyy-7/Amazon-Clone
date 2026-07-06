@@ -49,6 +49,12 @@ export function updateCartQuantity() { /*updates cart quantity count in cart bas
   if(orderCartQuantity) {
     orderCartQuantity.innerHTML = cartQuantity;
   }
+
+  const trackCartQuantity = document.querySelector('.js-tracking-page-cart-quantity') // cart quantity in tracking page
+
+  if(trackCartQuantity) {
+    trackCartQuantity.innerHTML = cartQuantity;
+    }
 }
 
 function saveToStorage() {
