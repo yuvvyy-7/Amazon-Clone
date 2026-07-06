@@ -1,4 +1,4 @@
-import { cart } from '../../data/cart.js';
+import { cart, clearCart } from '../../data/cart.js';
 import { getProduct } from '../../data/products.js';
 import { getDeliveryOption } from '../../data/deliveryOptions.js';
 import { formatCurrency } from '../utility/money.js';
@@ -88,6 +88,8 @@ document.querySelector('.js-place-order')
 
       const order = await response.json();
       addOrder(order);
+
+      clearCart();
 
     } catch (error) {
       console.log('Unexpected error! Try again later.');

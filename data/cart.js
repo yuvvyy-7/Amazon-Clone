@@ -29,13 +29,13 @@ export function updateCartQuantity() { /*updates cart quantity count in cart bas
     cartQuantity += cartItem.quantity;
   });
 
-  const cartQuantityElement = document.querySelector('.js-cart-quantity');
+  const cartQuantityElement = document.querySelector('.js-cart-quantity');// cart quantity in amazon homepage
 
   if (cartQuantityElement) {
     cartQuantityElement.innerHTML = cartQuantity;
   }
 
-  const checkoutCountElement = document.querySelector('.js-checkout-count');
+  const checkoutCountElement = document.querySelector('.js-checkout-count'); //cart quantity in checkout page
 
   if (checkoutCountElement) {
     checkoutCountElement.innerHTML = `
@@ -44,7 +44,7 @@ export function updateCartQuantity() { /*updates cart quantity count in cart bas
     `;
   }
 
-  const orderCartQuantity = document.querySelector('.js-orders-cart-quantity');
+  const orderCartQuantity = document.querySelector('.js-orders-cart-quantity'); //cart quantity in orders page
 
   if(orderCartQuantity) {
     orderCartQuantity.innerHTML = cartQuantity;
@@ -56,6 +56,8 @@ function saveToStorage() {
 }   
 
 const timeoutIds = {};
+
+
 export function addToCart(productId) {
     const addedToCart = document.querySelector(`.js-added-to-cart-${productId}`);
 
@@ -81,7 +83,8 @@ export function addToCart(productId) {
     } else {
     cart.push({
         productId, //productId = productId
-        quantity: Number(selectButtonValue)
+        quantity: Number(selectButtonValue),
+        deliveryOptionId: '1'
     });
         
         }
@@ -147,4 +150,35 @@ export async function loadCartFetch() {
   const text = await response.text();
   console.log(text);
   return text;
+}
+
+
+export function addToCartAgain(productId) {
+   
+    let matchingItem;
+    
+    cart.forEach((cartItem) => {
+        if (productId === cartItem.productId) {
+            matchingItem = cartItem;
+        }
+    });
+
+    if(matchingItem) {
+        matchingItem.quantity += 1;
+    } else {
+    cart.push({
+        productId, //productId = productId
+        quantity: 1,
+        deliveryOptionId: '1'
+    });
+        
+        }
+
+        saveToStorage();
+}
+
+export function clearCart() {
+  cart = [];
+  saveToStorage();
+  updateCartQuantity();
 }

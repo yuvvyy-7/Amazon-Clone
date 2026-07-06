@@ -1,4 +1,4 @@
-import { loadCartFetch, updateCartQuantity } from "../data/cart.js";
+import { loadCartFetch, updateCartQuantity, addToCart, addToCartAgain } from "../data/cart.js";
 import {orders} from "../data/orders.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { formatCurrency } from "./utility/money.js";
@@ -12,9 +12,6 @@ updateCartQuantity();
 await loadProductsFetch();
 let ordersHTML = '';
 
-orders.forEach((lol) => {
-    console.log(lol);
-});
 
 orders.forEach((order) => {
     const orderTimeString = dayjs(order.orderTime).format('MMMM D');
@@ -73,16 +70,17 @@ function productsListHTML(order) {
             </div>
             <button class="buy-again-button button-primary">
                 <img class="buy-again-icon" src="images/icons/buy-again.png">
-                <span class="buy-again-message">Buy it again</span>
+                <span class="buy-again-message js-buy-again-button" 
+                data-product-id="${product.id}" >Buy it again</span>
             </button>
             </div>
 
             <div class="product-actions">
-            <a href="tracking.html?orderId=${order.id}&productId=${product.id}">
-                <button class="track-package-button button-secondary">
-                Track package
-                </button>
-            </a>
+              <a href="tracking.html?orderId=${order.id}&productId=${product.id}">
+                  <button class="track-package-button button-secondary">
+                  Track package
+                  </button>
+              </a>
             </div>
         `;
     });
@@ -93,6 +91,22 @@ function productsListHTML(order) {
 
 document.querySelector('.js-orders-grid')
 .innerHTML = ordersHTML;
+
+document.querySelectorAll('.js-buy-again-button').forEach((button) => {
+    button.addEventListener('click', () => {
+      addToCartAgain(button.dataset.productId);
+
+      // (Optional) display a message that the product was added,
+      // then change it back after a second.
+      button.innerHTML = 'Added';
+      updateCartQuantity();
+      setTimeout(() => {
+        button.innerHTML = `
+          Buy it again
+        `;
+      }, 1000);
+    });
+  });
 
 
 }
